@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Homepage</title>
+
+    <!-- Thêm thư viện Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #335ea8;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 600;
+            /* Đảm bảo header hiển thị trên tất cả các phần tử khác */
+
+        }
+
+        .hotel-name {
+            font-size: 27px;
+            font-weight: bold;
+            padding-left: 20px;
+            padding-left: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hotel-name i {
+            margin-right: 10px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .search-input {
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            width: 500px;
+            margin-right: 10px;
+        }
+
+        .search-button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-button:hover {
+            background-color: #45a049;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            padding-right: 70px;
+        }
+
+        .user-icon {
+            margin-right: 8px;
+            font-size: 35px;
+        }
+
+        .sign-up-in {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+            font-size: 16px;
+        }
+
+        .sign-up-in:hover {
+            color: #45a049;
+            text-decoration: underline;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            padding-top: 100px;
+        }
+
+        .options select,
+        .options input[type="date"] {
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            width: 200px;
+        }
+
+        .options label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .search-btn-center {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Thêm CSS cho dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Thêm CSS cho Filter Sidebar và Hotel Listings */
+        .main-content {
+            display: flex;
+        }
+
+        .filter-sidebar {
+            width: 30%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .hotel-listings {
+            width: 70%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .room-container {
+            display: flex;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 900px;
+            padding-top: 50px;
+        }
+
+        .room-image {
+            margin-right: 20px;
+        }
+
+        .room-info {
+            flex: 1;
+        }
+
+        .location-info {
+            margin-bottom: 10px;
+        }
+
+        .price-info {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .check-availability-button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .check-availability-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Thêm CSS cho thanh trượt giá */
+        input[type="range"] {
+            width: 100%;
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="hotel-name">
+            <i class="fas fa-home"></i> Hotel LK
+        </div>
+
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search...">
+            <button class="search-button">Search</button>
+        </div>
+
+        <div class="user-info">
+            <!-- Sử dụng biểu tượng người dùng từ Font Awesome -->
+            <div class="user-icon"><i class="fas fa-user"></i></div>
+            <a href="#" class="sign-up-in">Sign-up / Sign-in</a>
+        </div>
+    </header>
+
+    <!-- Options section -->
+    <div class="options">
+        <div class="dropdown">
+            <label for="roomType">Room Type:</label>
+            <select id="roomType">
+                <option value="" disabled selected>Select Room Type</option>
+                <option value="room2Bed">Room 2 Bed</option>
+                <option value="room4Bed">Room 4 Bed</option>
+                <!-- Thêm các loại phòng khác nếu cần -->
+            </select>
+        </div>
+
+        <div class="dropdown">
+            <label for="bedConfig">Bed Configuration:</label>
+            <select id="bedConfig">
+                <option value="" disabled selected>Select Bed Configuration</option>
+                <option value="test1">Test 1</option>
+                <option value="test2">Test 2</option>
+                <!-- Thêm các cấu hình giường khác nếu cần -->
+            </select>
+        </div>
+
+        <div class="dropdown">
+            <label for="location">Location:</label>
+            <select id="location">
+                <option value="" disabled selected>Select Location</option>
+                <option value="location1">Location 1</option>
+                <option value="location2">Location 2</option>
+                <!-- Thêm các địa điểm khác nếu cần -->
+            </select>
+        </div>
+
+        <div>
+            <label for="checkInDate">Check-in date:</label>
+            <input type="date" id="checkInDate" name="checkInDate" />
+        </div>
+
+        <div>
+            <label for="checkOutDate">Check-out date:</label>
+            <input type="date" id="checkOutDate" name="checkOutDate" />
+        </div>
+
+        <button class="search-button">Search</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Filter Sidebar - 30% width -->
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Filter Sidebar - 30% width -->
+            <div class="filter-sidebar">
+                <h2>Ngân Sách Của Bạn</h2>
+                <label for="priceFilter">Price:</label>
+                <input type="range" id="priceFilter" name="priceFilter" min="100000" max="3000000" step="100000">
+                <div class="range-labels">
+                    <span id="minPrice">100,000</span>
+                    <span id="maxPrice">3,000,000</span>
+                </div>
+                <!-- Hiển thị giá trị thanh trượt giá -->
+                <div id="currentPrice">Giá hiện tại: 100,000 VND</div>
+                <!-- Thêm các bộ lọc khác nếu cần -->
+            </div>
+
+
+
+            <!-- Hotel Listings - 70% width -->
+            <div class="hotel-listings">
+                <!-- Ví dụ ô hiển thị phòng -->
+                <div class="room-container">
+                    <div class="room-image">
+                        <!-- Hình ảnh vừa phải -->
+                        <img src="./img/room1.webp" alt="Room Image" style="width: 150px;">
+                    </div>
+                    <div class="room-info">
+                        <!-- Thông tin phòng -->
+                        <h1>Hotel ABC</h1>
+                        <p class="location-info">
+                            <span style="color: blue; text-decoration: underline;">Location: 123 Main Street,
+                                City</span>
+                        </p>
+                        <p>
+                            Cách trung tâm 3km, cách bãi biển 2km.
+                            <br>
+                            <br>
+                            <span style="font-weight: bold;">Chi tiết phòng:</span> Căn hộ một phòng ngủ, 1 phòng tắm, 1
+                            phòng bếp.
+                        </p>
+                        <p class="price-info">
+                            Giá: 1 đêm 2 người lớn
+                        </p>
+                        <h2>VND 395,796</h2>
+                        <button class="check-availability-button">Xem Chỗ Trống</button>
+                    </div>
+                </div>
+                <!-- Thêm các ô khác nếu có nhiều khách sạn -->
+                <div class="room-container">
+                    <div class="room-image">
+                        <!-- Hình ảnh vừa phải -->
+                        <img src="./img/room1.webp" alt="Room Image" style="width: 150px;">
+                    </div>
+                    <div class="room-info">
+                        <!-- Thông tin phòng -->
+                        <h1>Hotel ABC</h1>
+                        <p class="location-info">
+                            <span style="color: blue; text-decoration: underline;">Location: 123 Main Street,
+                                City</span>
+                        </p>
+                        <p>
+                            Cách trung tâm 3km, cách bãi biển 2km.
+                            <br>
+                            <br>
+                            <span style="font-weight: bold;">Chi tiết phòng:</span> Căn hộ một phòng ngủ, 1 phòng tắm, 1
+                            phòng bếp.
+                        </p>
+                        <p class="price-info">
+                            Giá: 1 đêm 2 người lớn
+                        </p>
+                        <h2>VND 395,796</h2>
+                        <button class="check-availability-button">Xem Chỗ Trống</button>
+                    </div>
+                </div>
+                <div class="room-container">
+                    <div class="room-image">
+                        <!-- Hình ảnh vừa phải -->
+                        <img src="./img/room1.webp" alt="Room Image" style="width: 150px;">
+                    </div>
+                    <div class="room-info">
+                        <!-- Thông tin phòng -->
+                        <h1>Hotel ABC</h1>
+                        <p class="location-info">
+                            <span style="color: blue; text-decoration: underline;">Location: 123 Main Street,
+                                City</span>
+                        </p>
+                        <p>
+                            Cách trung tâm 3km, cách bãi biển 2km.
+                            <br>
+                            <br>
+                            <span style="font-weight: bold;">Chi tiết phòng:</span> Căn hộ một phòng ngủ, 1 phòng tắm, 1
+                            phòng bếp.
+                        </p>
+                        <p class="price-info">
+                            Giá: 1 đêm 2 người lớn
+                        </p>
+                        <h2>VND 395,796</h2>
+                        <button class="check-availability-button">Xem Chỗ Trống</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Lấy thanh trượt giá và các nhãn giá
+                var priceFilter = document.getElementById("priceFilter");
+                var currentPriceLabel = document.getElementById("currentPrice");
+
+                // Cập nhật giá trị nhãn khi thanh trượt giá thay đổi
+                priceFilter.addEventListener("input", function () {
+                    updateCurrentPriceLabel();
+                });
+
+                // Hàm cập nhật giá trị hiện tại
+                function updateCurrentPriceLabel() {
+                    currentPriceLabel.textContent = "Giá hiện tại: " + formatCurrency(priceFilter.value) + " VND";
+                }
+
+                // Hàm định dạng số thành định dạng tiền tệ
+                function formatCurrency(amount) {
+                    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+                }
+
+                // Gọi hàm cập nhật giá trị nhãn lần đầu
+                updateCurrentPriceLabel();
+            });
+        </script>
+
+</body>
+
+</html>

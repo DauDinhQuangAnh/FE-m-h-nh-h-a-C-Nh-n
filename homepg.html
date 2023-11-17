@@ -23,6 +23,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 600;
         }
 
         .hotel-name {
@@ -30,6 +33,12 @@
             font-weight: bold;
             padding-left: 20px;
             padding-left: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hotel-name i {
+            margin-right: 10px;
         }
 
         .search-bar {
@@ -89,6 +98,7 @@
             align-items: center;
             padding: 20px;
             background-color: #f4f4f4;
+            padding-top: 100px;
         }
 
         .options select,
@@ -145,7 +155,9 @@
 <body>
 
     <header>
-        <div class="hotel-name">Hotel LK</div>
+        <div class="hotel-name">
+            <i class="fas fa-home"></i> Hotel LK
+        </div>
 
         <div class="search-bar">
             <input type="text" class="search-input" placeholder="Search...">
