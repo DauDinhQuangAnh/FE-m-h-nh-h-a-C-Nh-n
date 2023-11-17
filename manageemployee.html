@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Management</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #eee;
+            padding: 0.5em;
+            text-align: center;
+        }
+
+        main {
+            padding: 1em;
+        }
+
+        section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 1em;
+            margin-bottom: 1em;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 0.5em 1em;
+            margin-bottom: 1em;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+
+        th,
+        td {
+            padding: 0.8em;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Staff Management</h1>
+    </header>
+
+    <nav>
+        <!-- Navigation links go here -->
+    </nav>
+
+    <main>
+        <section>
+            <h2>Employee List</h2>
+            <button onclick="addEmployee()">Add Employee</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="employee-list">
+                    <!-- Employee data goes here -->
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Team Organization</h2>
+            <!-- Team organization information goes here -->
+        </section>
+    </main>
+
+    <!-- Add this block of code inside the <script> tag at the end of the HTML file -->
+
+    <!-- Add this block of code inside the <script> tag at the end of the HTML file -->
+
+    <script>
+        // Sample employee data
+        const employees = [
+            { id: 1, name: 'John Doe', email: 'john.doe@example.com', department: 'Engineering' },
+            { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com', department: 'Marketing' },
+            { id: 3, name: 'Bob Johnson', email: 'bob.johnson@example.com', department: 'Finance' },
+        ];
+
+        // Function to add employees to the table
+        function addEmployeesToTable() {
+            const tableBody = document.getElementById('employee-list');
+
+            employees.forEach(employee => {
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+          <td>${employee.id}</td>
+          <td>${employee.name}</td>
+          <td>${employee.email}</td>
+          <td>${employee.department}</td>
+          <td>
+            <button onclick="editEmployee(${employee.id})">Edit</button>
+            <button onclick="deleteEmployee(${employee.id})">Delete</button>
+          </td>
+        `;
+            });
+        }
+
+        // Initialize the table with sample data
+        addEmployeesToTable();
+    </script>
+
+
+</body>
+
+</html>

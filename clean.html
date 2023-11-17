@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #eee;
+            padding: 0.5em;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-around;
+            padding: 1em;
+        }
+
+        section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            padding: 1em;
+            margin: 0.5em;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 0.5em 1em;
+            margin-bottom: 1em;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 0.5em 0;
+            padding: 0.5em;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .task-details {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .task-actions {
+            display: flex;
+        }
+
+        .due-date {
+            color: #e44d26;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Task Manager</h1>
+    </header>
+
+    <nav>
+        <!-- Navigation links go here -->
+    </nav>
+
+    <main>
+        <section>
+            <h2>To-Do</h2>
+            <ul id="todo-list">
+                <!-- To-Do tasks go here -->
+            </ul>
+            <button onclick="addTask()">Add Task</button>
+        </section>
+
+        <section>
+            <h2>In Progress</h2>
+            <ul id="in-progress-list">
+                <!-- In Progress tasks go here -->
+            </ul>
+        </section>
+
+        <section>
+            <h2>Completed</h2>
+            <ul id="completed-list">
+                <!-- Completed tasks go here -->
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        function addTask() {
+            // Logic to add a new task
+        }
+    </script>
+</body>
+
+</html>
